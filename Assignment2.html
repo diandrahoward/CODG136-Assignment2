@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <!--title-->
+    <title>Volcanoes of Italy</title>
+    <!--Link to Leaflet CSS document-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
+    <!--Link to Leaflet JS API-->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+        
+    <!--Styling document elements, declaring the map to fill the entire page-->
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map { width: 100%; height: 100%}
+    </style>
+  </head>
+
+  <body>
+    <!--Declare map div container to place the map inside on the page-->
+    <div id="map"></div>
+
+    <!--Javascript map functions-->
+    <script>
+      
+      var map = L.map('map').setView([41.87194,12.56738], 7);
+       
+      var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	      subdomains: 'abcd',
+        minZoom: 5,
+	      maxZoom: 14
+      }).addTo(map);
+
+      var dormantVolcano = L.icon({
+        iconUrl: 'icons8-triangle-40.png',
+        iconSize: [25, 25],
+      });
+
+      var extinctVolcano = L.icon({
+        iconUrl: '',
+        iconSize: [25, 25],
+      });
+
+      var activeVolcano = L.icon({
+        iconUrl: '',
+        iconSize: [25, 25],
+      });
+
+      L.marker([40.72721470899244, 13.903366401131827], {icon: dormantVolcano}).addTo(map);
+
+      fetch('Assignment2.json', {
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        example = L.geoJson(json, {
+          // style path 
+          // http://leafletjs.com/examples/geojson/
+          style: {
+            "color": "#1a7485",
+            "weight": 1.5,
+            "opacity": 0.9,
+          },
+          // a function that gets called on each feature before adding it to a GeoJSON layer. A common reason to use this option is to attach a popup to features when they are clicked.
+          onEachFeature: onEachFeature
+          // add example GeoJSON layer to the map
+        }).addTo(mymap);
+      })
+    
+    </script>
+  </body>
+</html>
