@@ -49,7 +49,14 @@
         iconSize: [25, 25],
       });
 
-      L.marker([40.72721470899244, 13.903366401131827], {icon: dormantVolcano}).addTo(map);
+
+      function onEachFeature(feature, layer) {
+        var popupContent = feature.properties.info;
+        if (feature.properties && feature.properties.popupContent) {
+          popupContent += feature.properties.popupContent;
+        }
+        layer.bindPopup(popupContent);
+      }
 
       fetch('Assignment2.json', {
         headers: {
