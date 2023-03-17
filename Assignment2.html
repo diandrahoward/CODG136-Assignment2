@@ -35,46 +35,53 @@
       }).addTo(map);
 
       var dormantVolcano = L.icon({
-        iconUrl: 'icons8-triangle-40.png',
+        iconUrl: 'dormant.png',
         iconSize: [25, 25],
       });
 
       var extinctVolcano = L.icon({
-        iconUrl: '',
+        iconUrl: 'extinct.png',
         iconSize: [25, 25],
       });
 
       var activeVolcano = L.icon({
-        iconUrl: '',
+        iconUrl: 'active.png',
         iconSize: [25, 25],
       });
 
 
       function onEachFeature(feature, layer) {
-        var popupContent = feature.properties.info;
-        if (feature.properties && feature.properties.popupContent) {
-          popupContent += feature.properties.popupContent;
-        }
+        console.log(feature)
+        var popupContent = "<h3>" + feature.properties.name + "</h3>";
+        popupContent += "Status: "+feature.properties.status;
         layer.bindPopup(popupContent);
       }
 
-      fetch('Assignment2.json', {
+      function pointToLayer(feature, latlng) {
+        if (feature.properties.status == "active") {
+          return L.marker(latlng, {icon: activeVolcano});
+        }
+        if (feature.properties.status == "extinct") {
+          return L.marker(latlng, {icon: extinctVolcano});
+        }
+        if (feature.properties.status == "dormant") {
+          return L.marker(latlng, {icon: dormantVolcano});
+        }
+      }
+
+      fetch('https://raw.githack.com/diandrahoward/CODG136-Assignment2/main/Assignment2.json', {
         headers: {
           'Accept': 'application/json'
         }
       })
       .then(response => response.json())
       .then(json => {
-        example = L.geoJson(json, {
-          // style path 
-          // http://leafletjs.com/examples/geojson/
-          style: {
-            "color": "#1a7485",
-            "weight": 1.5,
-            "opacity": 0.9,
-          },
+        L.geoJson(json, {
+
           // a function that gets called on each feature before adding it to a GeoJSON layer. A common reason to use this option is to attach a popup to features when they are clicked.
-          onEachFeature: onEachFeature
+          onEachFeature: onEachFeature,
+          pointToLayer: pointToLayer
+          
           // add example GeoJSON layer to the map
         }).addTo(map);
       })
