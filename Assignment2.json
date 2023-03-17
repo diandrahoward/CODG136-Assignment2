@@ -5,10 +5,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [40.72721470899244, 13.903366401131827]
+        "coordinates": [13.90, 40.73]
       },
       "properties": {
-        "name": "ischia",
+        "name": "Ischia",
         "status": "active"
       }
     },
@@ -16,11 +16,11 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [40.72721470899244, 13.903366401131827]
+        "coordinates": [15.67, 40.92]
       },
       "properties": {
-        "name": "ischia",
-        "status": "active"
+        "name": "Monte Vulture",
+        "status": "extinct"
       }
     }
   ]
