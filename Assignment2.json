@@ -55,6 +55,50 @@
         "name": "Mount Etna",
         "status": "active"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [11.63, 42.89]
+      },
+      "properties": {
+        "name": "Amiata",
+        "status": "extinct"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.82, 42.57]
+      },
+      "properties": {
+        "name": "Polino",
+        "status": "extinct"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 14.95, 38.51]
+      },
+      "properties": {
+        "name": "Lipari",
+        "status": "dormant"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 14.14, 40.83]
+      },
+      "properties": {
+        "name": "Campi Flegrei (Phlegrean Fields",
+        "status": "dormant"
+      }
     }
   ]
 }
