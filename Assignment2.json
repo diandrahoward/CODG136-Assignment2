@@ -9,7 +9,10 @@
       },
       "properties": {
         "name": "Ischia",
-        "status": "dormant"
+        "status": "Dormant",
+        "type": "Complex",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211030"
+
       }
     },
     {
@@ -20,7 +23,9 @@
       },
       "properties": {
         "name": "Monte Vulture",
-        "status": "extinct"
+        "status": "Extinct",
+        "type": "Stratovolcano",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211812"
       }
     },
     {
@@ -31,7 +36,9 @@
       },
       "properties": {
         "name": "Vesuvius",
-        "status": "active"
+        "status": "Active",
+        "type": "Stratovolcano",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211020"
       }
     },
     {
@@ -42,7 +49,9 @@
       },
       "properties": {
         "name": "Stromboli",
-        "status": "active"
+        "status": "Active",
+        "type": "Stratovolcano",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211040"
       }
     },
     {
@@ -53,7 +62,9 @@
       },
       "properties": {
         "name": "Mount Etna",
-        "status": "active"
+        "status": "Active",
+        "type": "Stratovolcano",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211060"
       }
     },
     {
@@ -64,7 +75,9 @@
       },
       "properties": {
         "name": "Amiata",
-        "status": "extinct"
+        "status": "Extinct",
+        "type": "Lava dome",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211800"
       }
     },
     {
@@ -75,7 +88,9 @@
       },
       "properties": {
         "name": "Polino",
-        "status": "extinct"
+        "status": "Extinct",
+        "type": "Explosion crater",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211805"
       }
     },
     {
@@ -86,7 +101,9 @@
       },
       "properties": {
         "name": "Lipari",
-        "status": "dormant"
+        "status": "Dormant",
+        "type": "Stratovolcano",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211042"
       }
     },
     {
@@ -96,8 +113,10 @@
         "coordinates": [ 14.14, 40.83]
       },
       "properties": {
-        "name": "Campi Flegrei (Phlegrean Fields",
-        "status": "dormant"
+        "name": "Campi Flegrei (Phlegrean Fields)",
+        "status": "Dormant",
+        "type": "Caldera",
+        "link": "https://volcano.si.edu/volcano.cfm?vn=211010"
       }
     }
   ]
