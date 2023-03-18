@@ -5,12 +5,16 @@
     <!--title-->
     <title>Volcanoes of Italy</title>
     <!--Link to Leaflet CSS document-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""/>
 
-    <!--Link to Leaflet JS API-->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <!--Link to Leaflet JavaScript API-->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""></script>
         
-    <!--Styling document elements, declaring the map to fill the entire page-->
+    <!--Styling document elements-->
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
@@ -25,50 +29,64 @@
     <!--Javascript map functions-->
     <script>
       
-      var map = L.map('map').setView([41.87194,12.56738], 7);
+      // Set view to show Italy
+      var map = L.map('map').setView([41.87194,12.56738], 6);
        
+      // Define layer to show CartoDB_Voyager map
       var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
 	      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	      subdomains: 'abcd',
-        minZoom: 5,
+        minZoom: 6,
 	      maxZoom: 14
       }).addTo(map);
 
+      // Define icon to be used with dormant volcano
       var dormantVolcano = L.icon({
         iconUrl: 'dormant.png',
         iconSize: [25, 25],
       });
 
+      // Define icon to be used with extinct volcano
       var extinctVolcano = L.icon({
         iconUrl: 'extinct.png',
         iconSize: [25, 25],
       });
 
+      // Define icon to  be used with active volcano
       var activeVolcano = L.icon({
         iconUrl: 'active.png',
         iconSize: [25, 25],
       });
 
-
+      // Function to create pop up content for each volcano
       function onEachFeature(feature, layer) {
-        console.log(feature)
         var popupContent = "<h3>" + feature.properties.name + "</h3>";
         popupContent += "Status: "+feature.properties.status;
-        layer.bindPopup(popupContent);
+        popupContent += "<br>Type: "+feature.properties.type;
+        popupContent += "<br><a href="+feature.properties.link+">Link</a>";
+        layer.bindPopup(popupContent); // Adds pop up to geoJson layer
       }
 
+      // Function to create a marker for each volcano
       function pointToLayer(feature, latlng) {
-        if (feature.properties.status == "active") {
+
+        // If the status of the volcano is active create an active volcano marker
+        if (feature.properties.status == "Active") {
           return L.marker(latlng, {icon: activeVolcano});
         }
-        if (feature.properties.status == "extinct") {
+
+        // If the status of the volcano is extinct create an extinct marker
+        if (feature.properties.status == "Extinct") {
           return L.marker(latlng, {icon: extinctVolcano});
         }
-        if (feature.properties.status == "dormant") {
+
+        // If the status of the volcano is dormant create a dormant marker
+        if (feature.properties.status == "Dormant") {
           return L.marker(latlng, {icon: dormantVolcano});
         }
       }
 
+      // Fetches geoJson data from GitHub
       fetch('https://raw.githubusercontent.com/diandrahoward/CODG136-Assignment2/main/Assignment2.json', {
         headers: {
           'Accept': 'application/json'
@@ -78,14 +96,12 @@
       .then(json => {
         L.geoJson(json, {
 
-          // a function that gets called on each feature before adding it to a GeoJSON layer. A common reason to use this option is to attach a popup to features when they are clicked.
+          // Adds a popup to features when they are clicked
           onEachFeature: onEachFeature,
+          // Set function that creates a marker for the volcano
           pointToLayer: pointToLayer
-          
-          // add example GeoJSON layer to the map
         }).addTo(map);
       })
-    
     </script>
   </body>
 </html>
