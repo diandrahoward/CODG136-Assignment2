@@ -19,6 +19,30 @@
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
       #map { width: 100%; height: 100%}
+
+      /*Legend specific*/
+      .legend {
+        padding: 6px 8px;
+        background: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        line-height: 24px;
+        color: #555;
+      }
+
+      .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin: 0 8px 0 0;
+        opacity: 0.7;
+      }
+
+      .legend i.icon {
+        background-size: 18px;
+        background-color: rgba(255, 255, 255, 1);
+      }
+
     </style>
   </head>
 
@@ -39,6 +63,25 @@
         minZoom: 6,
 	      maxZoom: 14
       }).addTo(map);
+
+      // Create lengend control
+      var legend = L.control({ position: "topright" });
+
+      // Create legend content
+      legend.onAdd = function(map) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<b>Volcano Status</b><br>";
+        div.innerHTML += "<p>";
+        div.innerHTML += '<i class="icon" style="background-image: url(dormant.png);background-repeat: no-repeat;"></i><span>Dormant</span><br>';
+        div.innerHTML += '<i class="icon" style="background-image: url(extinct.png);background-repeat: no-repeat;"></i><span>Extinct</span><br>';
+        div.innerHTML += '<i class="icon" style="background-image: url(active.png);background-repeat: no-repeat;"></i><span>Active</span><br>';
+        div.innerHTML += "</p>";
+        
+        return div;
+      };
+
+      legend.addTo(map);
+
 
       // Define icon to be used with dormant volcano
       var dormantVolcano = L.icon({
